@@ -711,11 +711,11 @@ public int CompareTo(object obj)
 
 `System.Int32`: 表示与比较对象的相对顺序，具有以下含义:
 
-| 值   | 含义                                   |
-| ---- | -------------------------------------- |
-| < 0  | 在排序顺序中，当前实例位于比较对象之前 |
-| = 0  | 在排序顺序中，当前实例与比较对象相同   |
-| > 0  | 在排序顺序中，当前实例位于比较对象之后 |
+| 值                                              | 含义                                   |
+| ----------------------------------------------- | -------------------------------------- |
+| < 0                                             | 在排序顺序中，当前实例位于比较对象之前 |
+| = 0                                             | 在排序顺序中，当前实例与比较对象相同   |
+| public delegate nint EntryPoint.VehDelegate()c# | 在排序顺序中，当前实例位于比较对象之后 |
 
 ###### 输入值
 
@@ -727,13 +727,510 @@ public int CompareTo(object obj)
 
 `System.ArgumentException`: 比较对象与当前实例非相同类型
 
+##### CompareTo(GameVersion)
+
+将当前实例与另一个相同类型的对象相比较，并返回一个整数，该整数指示当前实例在排序顺序中是位于比较对象之前还是相同的位置
+
+```c#
+public int CompareTo(GameVersion value)
+```
+
+###### 返回值
+
+`System.Int32`: 表示与比较对象的相对顺序，具有以下含义:
+
+| 值   | 含义                                   |
+| ---- | -------------------------------------- |
+| < 0  | 在排序顺序中，当前实例位于比较对象之前 |
+| = 0  | 在排序顺序中，当前实例与比较对象相同   |
+| > 0  | 在排序顺序中，当前实例位于比较对象之后 |
+
+###### 输入值
+
+| 类型                                     | 名称    |
+| ---------------------------------------- | ------- |
+| [Dalamud.Game.GameVersion](#GameVersion) | *value* |
+
+##### Equals(object)
+
+确定给定的对象是否等于当前对象
+
+```csharp
+public override bool Equals(object obj)
+```
+
+###### 返回值
+
+`System.Boolean`: 如果相等，则为 true，反之为 false
+
+###### 输入值
+
+| 类型            | 名称  | 描述                     |
+| --------------- | ----- | ------------------------ |
+| `System.Object` | *obj* | 要与当前对象相比较的对象 |
+
+##### Equals(GameVersion)
+
+确定给定的对象是否等于当前对象
+
+```csharp
+public bool Equals(GameVersion value)
+```
+
+###### 返回值
+
+`System.Boolean`: 如果相等，则为 true，反之为 false
+
+###### 输入值
+
+| 类型                                                         | 名称    |
+| ------------------------------------------------------------ | ------- |
+| [Dalamud.Game.GameVersion](https://dalamud.dev/api/Dalamud.Game/Classes/GameVersion) | *value* |
+
+##### GetHashCode()
+
+用作默认的哈希函数
+
+```csharp
+public override int GetHashCode()
+```
+
+###### 返回值
+
+`System.Int32`: 当前对象的哈希值
+
+##### ToString()
+
+返回一个代表当前对象的字符串
+
+```csharp
+public override string ToString()
+```
+
+`System.String`: 代表当前对象的字符串
+
+#### 实现
+
+- `System.ICloneable`
+- `System.IComparable`
+- `System.IComparable<Dalamud.Game.GameVersion>`
+- `System.IEquatable<Dalamud.Game.GameVersion>`
+
 ### GameVersionConverter
 
-将一个 Dalamud.Game.GameVersion 对象转换并组成一个字符串 (如: `2010.01.01.1234.5678`)
+将一个 [Dalamud.Game.GameVersion](#GameVersion) 对象转换并组成一个字符串 (如: `2010.01.01.1234.5678`)
+
+**程序集: Dalamud.dll**
+
+```c#
+public sealed class GameVersionConverter : JsonConverter
+```
+
+**继承:** `System.Object` -> `Newtonsoft.Json.JsonConverter`
+
+#### 方法
+
+##### WriteJson(JsonWriter, object?, JsonSerializer)
+
+编写对象的 JSON 表示
+
+```c#
+public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+```
+
+###### 输入值
+
+| 类型                                | 名称          | 描述               |
+| ----------------------------------- | ------------- | ------------------ |
+| `Newtonsoft.Json.JsonWriter`        | *writer*     | 要写入的 `Newtonsoft.Json.JsonWriter` |
+| `System.Object`                     | *value*      | 要写入的值             |
+| `Newtonsoft.Json.JsonSerializer`   | *serializer* | 要调用的序列化程序  |
+
+##### ReadJson(JsonReader, Type, object?, JsonSerializer)
+
+读取对象的 JSON 表示。
+
+```c#
+public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+```
+
+###### 返回值
+
+`System.Object`: 对象值
+
+###### 输入值
+
+| 类型                                | 名称          | 描述                                      |
+| ----------------------------------- | ------------- | ----------------------------------------- |
+| `Newtonsoft.Json.JsonReader`         | *reader*     | 要读取的 `Newtonsoft.Json.JsonReader` |
+| `System.Type`                       | *objectType* | 对象类型                                |
+| `System.Object`                     | *existingValue* | 正在被转换的 JSON 的现有属性值            |
+| `Newtonsoft.Json.JsonSerializer`   | *serializer* | 要调用的序列化程序                      |
+
+##### CanConvert(Type)
+
+确定此实例是否可以转换指定的对象类型。
+
+```c#
+public override bool CanConvert(Type objectType)
+```
+
+###### 返回值
+
+`System.Boolean`: 可以转换，为 true；否则为 false。
+
+###### 参数
+
+| 类型                                | 名称          | 描述               |
+| ----------------------------------- | ------------- | ------------------ |
+| `System.Type`                       | *objectType* | 对象的类型         |
+
 
 ### SigScanner
 
 用于在给定的进程模块 (ProcessModule) 中搜索内存签名
+
+**程序集: Dalamud.dll**
+
+```c#
+public class SigScanner : IDisposable, IServiceType, ISigScanner
+```
+
+**实现:**
+
+`System.IDisposable`, [Dalamud.IServiceType](Dalamud.md#IServiceType), [Dalamud.Game.ISigScanner](#ISigScanner)
+
+#### 属性
+
+##### IsCopy
+
+获取一个值，该值表示在此模块上进行的搜索是否在模块的副本上执行
+
+```c#
+public bool IsCopy { get; }
+```
+
+##### Is32BitProcess
+
+获取一个值，该值表示进程模块是否为32位
+
+```c#
+public bool Is32BitProcess { get; }
+```
+
+##### SearchBase
+
+获取搜索区域的基地址。复制时，将会是副本的地址
+
+```c#
+public nint SearchBase { get; }
+```
+
+##### TextSectionBase
+
+获取 .text 段搜索区域的基地址
+
+```c#
+public nint TextSectionBase { get; }
+```
+
+##### TextSectionOffset
+
+获取 .text 段相对于模块基址的偏移量
+
+```c#
+public long TextSectionOffset { get; }
+```
+
+##### TextSectionSize
+
+获取 .text 段的大小
+
+```c#
+public int TextSectionSize { get; }
+```
+
+##### DataSectionBase
+
+获取 .data 段搜索区域的基地址
+
+```c#
+public nint DataSectionBase { get; }
+```
+
+##### DataSectionOffset
+
+获取 .data 段相对于模块基址的偏移量
+
+```c#
+public long DataSectionOffset { get; }
+```
+
+##### DataSectionSize
+
+获取 .data 段的大小
+
+```c#
+public int DataSectionSize { get; }
+```
+
+##### RDataSectionBase
+
+获取 .rdata 段搜索区域的基地址
+
+```c#
+public nint RDataSectionBase { get; }
+```
+
+##### RDataSectionOffset
+
+获取 .rdata 段相对于模块基址的偏移量
+
+```c#
+public long RDataSectionOffset { get; }
+```
+
+##### RDataSectionSize
+
+获取 .rdata 段的大小
+
+```c#
+public int RDataSectionSize { get; }
+```
+
+##### Module
+
+获取正在执行搜索的进程模块
+
+```c#
+public ProcessModule Module { get; }
+```
+
+#### 方法
+
+##### Scan(nint, int, string)
+
+在内存中扫描签名。
+
+```c#
+public static nint Scan(nint baseAddress, int size, string signature)
+```
+
+###### 返回值
+
+`System.IntPtr`：找到的偏移量
+
+###### 输入值
+
+| 类型                | 名称            | 描述               |
+| ------------------- | --------------- | ------------------ |
+| `System.IntPtr`     | *baseAddress*  | 要从中扫描的基地址 |
+| `System.Int32`      | *size*          | 要扫描的字节数   |
+| `System.String`     | *signature*     | 要搜索的签名     |
+
+##### TryScan(nint, int, string, out nint)
+
+尝试在内存中扫描签名
+
+```c#
+public static bool TryScan(nint baseAddress, int size, string signature, out nint result)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为 true
+
+###### 输入值
+
+| 类型                | 名称            | 描述                  |
+| ------------------- | --------------- | --------------------- |
+| `System.IntPtr`     | *baseAddress*  | 要扫描的基地址   |
+| `System.Int32`      | *size*          | 要扫描的字节数      |
+| `System.String`     | *signature*     | 要搜索的签名        |
+| `System.IntPtr&`    | *result*        | 如果找到签名，则为偏移量 |
+
+##### GetStaticAddressFromSig(string, int)
+
+使用`.text`函数扫描`.data`地址。这意味着在IDA Pro中使用签名来识别代码中的特定模式。将光标放在调用静态地址的那一行上，并创建一个IDA签名。该签名和偏移量不应跨越指令边界。
+
+```c#
+public nint GetStaticAddressFromSig(string signature, int offset = 0)
+```
+
+###### 返回值
+
+`System.IntPtr`：指向静态内存位置的 IntPtr
+
+###### 输入值
+
+| 类型                | 名称            | 描述                   |
+| ------------------- | --------------- | ---------------------- |
+| `System.String`     | *signature*     | 使用数据的函数的签名。 |
+| `System.Int32`      | *offset*        | 使用数据的指令的偏移量。 |
+
+##### TryGetStaticAddressFromSig(string, out nint, int)
+
+尝试使用`.text`函数扫描`.data`地址。这意味着在IDA Pro中使用签名来识别代码中的特定模式。将光标放在调用静态地址的那一行上，并创建一个IDA签名。
+
+```c#
+public bool TryGetStaticAddressFromSig(string signature, out nint result, int offset = 0)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为true
+
+###### 输入值
+
+| 类型                | 名称            | 描述                       |
+| ------------------- | --------------- | -------------------------- |
+| `System.String`     | *signature*     | 使用数据的函数的签名     |
+| `System.IntPtr&`    | *result*        | 如果找到签名，则为静态内存位置 |
+| `System.Int32`      | *offset*        | 使用数据的指令的偏移量   |
+
+##### ScanData(string)
+
+在 .data 段中扫描字节签名
+
+```c#
+public nint ScanData(string signature)
+```
+
+###### 返回值
+
+`System.IntPtr`：找到的签名的实际偏移量
+
+###### 输入值
+
+| 类型            | 名称        | 描述 |
+| --------------- | ----------- | ---- |
+| `System.String` | *signature* | 签名 |
+
+##### TryScanData(string, out nint)
+
+尝试在 .data 段中扫描字节签名。
+
+```c#
+public bool TryScanData(string signature, out nint result)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为true。
+
+###### 输入值
+
+| 类型                | 名称            | 描述                         |
+| ------------------- | --------------- | ---------------------------- |
+| `System.String`     | *signature*     | 签名。                        |
+| `System.IntPtr&`    | *result*        | 如果找到签名，则为实际偏移量 |
+
+##### ScanModule(string)
+
+在整个模块搜索区域中扫描字节签名
+
+```c#
+public nint ScanModule(string signature)
+```
+
+###### 返回值
+
+`System.IntPtr`：找到的签名的实际偏移量
+
+###### 输入值
+
+| 类型            | 名称        | 描述 |
+| --------------- | ----------- | ---- |
+| `System.String` | *signature* | 签名 |
+
+##### TryScanModule(string, out nint)
+
+尝试在整个模块搜索区域中扫描字节签名
+
+```c#
+public bool TryScanModule(string signature, out nint result)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为true
+
+###### 输入值
+
+| 类型                | 名称            | 描述                         |
+| ------------------- | --------------- | ---------------------------- |
+| `System.String`     | *signature*     | 签名                        |
+| `System.IntPtr&`    | *result*        | 如果找到签名，则为实际偏移量 |
+
+##### ResolveRelativeAddress(nint, int)
+
+解析 RVA 地址
+
+```c#
+public nint ResolveRelativeAddress(nint nextInstAddr, int relOffset)
+```
+
+###### 返回值
+
+`System.IntPtr`：计算得到的偏移量
+
+###### 输入值
+
+| 类型                | 名称                | 描述                   |
+| ------------------- | ------------------- | ---------------------- |
+| `System.IntPtr`     | *nextInstAddr*     | 下一条指令的地址     |
+| `System.Int32`      | *relOffset*        | 相对偏移量           |
+
+##### ScanText(string)
+
+在 .text 段中扫描字节签名。
+
+```c#
+public nint ScanText(string signature)
+```
+
+###### 返回值
+
+`System.IntPtr`：找到的签名的实际偏移量。
+
+###### 输入值
+
+| 类型            | 名称        | 描述 |
+| --------------- | ----------- | ---- |
+| `System.String` | *signature* | 签名 |
+
+##### TryScanText(string, out nint)
+
+尝试在 .text 段中扫描字节签名
+
+```c#
+public bool TryScanText(string signature, out nint result)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为true
+
+###### 输入值
+
+| 类型                | 名称            | 描述                         |
+| ------------------- | --------------- | ---------------------------- |
+| `System.String`     | *signature*     | 签名。                        |
+| `System.IntPtr&`    | *result*        | 找到的签名的实际偏移量，如果找到。 |
+
+##### Dispose()
+
+在对象销毁时，如果适用的话，释放已复制的模块搜索区域的内存。
+
+```c#
+public void Dispose()
+```
+
+实现
+
+- `System.IDisposable`
+- [Dalamud.IServiceType](Dalamud.md#IServiceType)
+- [Dalamud.Game.ISigScanner](#ISigScanner)
 
 ## 接口
 
@@ -741,17 +1238,318 @@ public int CompareTo(object obj)
 
 用于在给定的进程模块 (ProcessModule) 中搜索内存签名
 
+**程序集: Dalamud.dll**
+
+```c#
+public interface ISigScanner
+```
+
+#### 属性
+
+##### IsCopy
+
+获取一个值，该值表示在此模块上进行的搜索是否在模块的副本上执行
+
+```c#
+bool IsCopy { get; }
+```
+
+##### Is32BitProcess
+
+获取一个值，该值表示进程模块是否为32位
+
+```c#
+bool Is32BitProcess { get; }
+```
+
+##### SearchBase
+
+获取搜索区域的基地址。复制时，将会是副本的地址
+
+```c#
+nint SearchBase { get; }
+```
+
+##### TextSectionBase
+
+获取 .text 段搜索区域的基地址
+
+```c#
+nint TextSectionBase { get; }
+```
+
+##### TextSectionOffset
+
+获取 .text 段相对于模块基址的偏移量
+
+```c#
+long TextSectionOffset { get; }
+```
+
+##### TextSectionSize
+
+获取 .text 段的大小
+
+```c#
+int TextSectionSize { get; }
+```
+
+##### DataSectionBase
+
+获取 .data 段搜索区域的基地址
+
+```c#
+nint DataSectionBase { get; }
+```
+
+##### DataSectionOffset
+
+获取 .data 段相对于模块基址的偏移量
+
+```c#
+long DataSectionOffset { get; }
+```
+
+##### DataSectionSize
+
+获取 .data 段的大小
+
+```c#
+int DataSectionSize { get; }
+```
+
+##### RDataSectionBase
+
+获取 .rdata 段搜索区域的基地址
+
+```c#
+nint RDataSectionBase { get; }
+```
+
+##### RDataSectionOffset
+
+获取 .rdata 段相对于模块基址的偏移量
+
+```c#
+long RDataSectionOffset { get; }
+```
+
+##### RDataSectionSize
+
+获取 .rdata 段的大小
+
+```c#
+int RDataSectionSize { get; }
+```
+
+##### Module
+
+获取正在执行搜索的进程模块
+
+```c#
+ProcessModule Module { get; }
+```
+
+#### 方法
+
+##### GetStaticAddressFromSig(string, int)
+
+使用`.text`函数扫描`.data`地址。这意味着在IDA Pro中使用签名来识别代码中的特定模式。将光标放在调用静态地址的那一行上，并创建一个IDA签名。该签名和偏移量不应跨越指令边界
+
+```c#
+nint GetStaticAddressFromSig(string signature, int offset = 0)
+```
+
+###### 返回值
+
+`System.IntPtr`：指向静态内存位置的 IntPtr
+
+###### 输入值
+
+| 类型            | 名称        | 描述                   |
+| --------------- | ----------- | ---------------------- |
+| `System.String` | *signature* | 使用数据的函数的签名   |
+| `System.Int32`  | *offset*    | 使用数据的指令的偏移量 |
+
+##### TryGetStaticAddressFromSig(string, out nint, int)
+
+尝试使用`.text`函数扫描`.data`地址。这意味着在IDA Pro中使用签名来识别代码中的特定模式。将光标放在调用静态地址的那一行上，并创建一个IDA签名。
+
+```c#
+bool TryGetStaticAddressFromSig(string signature, out nint result, int offset = 0)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为 true。
+
+###### 输入值
+
+| 类型             | 名称          | 描述                                |
+| ---------------- | ------------- | ----------------------------------- |
+| `System.String`  | *signature*   | 使用数据的函数的签名              |
+| `System.IntPtr`  | *result*      | 如果找到签名，则为静态内存位置 |
+| `System.Int32`   | *offset*      | 使用数据的指令的偏移量              |
+
+##### ScanData(string)
+
+在 .data 段中扫描字节签名
+
+```c#
+nint ScanData(string signature)
+```
+
+###### 返回值
+
+`System.IntPtr`：找到签名的实际偏移量
+
+###### 输入值
+
+| 类型            | 名称        | 描述 |
+| --------------- | ----------- | ---- |
+| `System.String` | *signature* | 签名 |
+
+##### TryScanData(string, out nint)
+
+在 .data 段中尝试扫描字节签名
+
+```c#
+bool TryScanData(string signature, out nint result)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为 true
+
+###### 输入值
+
+| 类型             | 名称          | 描述                                 |
+| ---------------- | ------------- | ------------------------------------ |
+| `System.String`  | *signature*   | 签名                               |
+| `System.IntPtr`  | *result*      | 如果找到签名，则为签名的实际偏移量 |
+
+##### ScanModule(string)
+
+在整个模块搜索区域中扫描字节签名
+
+```c#
+nint ScanModule(string signature)
+```
+
+###### 返回值
+
+`System.IntPtr`：找到签名的实际偏移量
+
+###### 输入值
+
+| 类型            | 名称        | 描述 |
+| --------------- | ----------- | ---- |
+| `System.String` | *signature* | 签名 |
+
+##### TryScanModule(string, out nint)
+
+在整个模块搜索区域中尝试扫描字节签名
+
+```c#
+bool TryScanModule(string signature, out nint result)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为 true
+
+###### 输入值
+
+| 类型             | 名称          | 描述                                 |
+| ---------------- | ------------- | ------------------------------------ |
+| `System.String`  | *signature*   | 签名                               |
+| `System.IntPtr`  | *result*      | 如果找到签名，则为签名的实际偏移量 |
+
+##### ResolveRelativeAddress(nint, int)
+
+解析 RVA 地址。
+
+```c#
+nint ResolveRelativeAddress(nint nextInstAddr, int relOffset)
+```
+
+###### 返回值
+
+`System.IntPtr`：计算出的偏移量
+
+###### 输入值
+
+| 类型            | 名称           | 描述             |
+| --------------- | -------------- | ---------------- |
+| `System.IntPtr` | *nextInstAddr* | 下一条指令的地址 |
+| `System.Int32`  | *relOffset*    | 相对偏移量       |
+
+##### ScanText(string)
+
+在 .text 段中扫描字节签名
+
+```c#
+nint ScanText(string signature)
+```
+
+###### 返回值
+
+`System.IntPtr`：找到签名的实际偏移量
+
+###### 输入值
+
+| 类型            | 名称        | 描述 |
+| --------------- | ----------- | ---- |
+| `System.String` | *signature* | 签名 |
+
+##### TryScanText(string, out nint)
+
+在 .text 段中尝试扫描字节签名。
+
+```c#
+bool TryScanText(string signature, out nint result)
+```
+
+###### 返回值
+
+`System.Boolean`：如果找到签名，则为 true
+
+###### 输入值
+
+| 类型             | 名称          | 描述                                 |
+| ---------------- | ------------- | ------------------------------------ |
+| `System.String`  | *signature*   | 签名。                               |
+| `System.IntPtr`  | *result*      | 如果找到，则为签名的实际偏移量的 IntPtr。 |
+
 ## 委托
 
 ### Framework.OnDestroyDelegate
 
 用于原生 Framework::free 期间的委托
 
+**程序集:Dalamud.dll**
+
+```c#
+public delegate nint Framework.OnDestroyDelegate()
+```
+
 ### Framework.OnRealDestroyDelegate
 
 用于原生 Framework::destory 期间的委托
 
+**程序集:Dalamud.dll**
+
+```c#
+public delegate bool Framework.OnRealDestroyDelegate(nint framework)
+```
+
 ### Framework.OnUpdateDelegate
 
 与 [Dalamud.Game.Framework.Update](#Update) 事件一起使用的委托
+
+**程序集:Dalamud.dll**
+
+```c#
+public delegate void Framework.OnUpdateDelegate(Framework framework)
+```
 
