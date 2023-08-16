@@ -182,7 +182,7 @@ public nint ObjectTable { get; }
 
 ##### BuddyList
 
-获取好友列表的地址
+获取伙伴(如: 专属陆行鸟、宠物、冒险者分队、亲信战友)列表的地址
 
 ```c#
 public nint BuddyList { get; }
